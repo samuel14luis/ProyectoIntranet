@@ -5,6 +5,7 @@
  */
 package complementos;
 
+import java.awt.Color;
 import javax.swing.JCheckBox;
 
 /**
@@ -14,10 +15,12 @@ import javax.swing.JCheckBox;
 public class CheckBoxCurso {
     public JCheckBox checkbox;
     public NotasCurso curso;
+    public Color color_curso;
 
-    public CheckBoxCurso(JCheckBox checkbox, NotasCurso curso) {
+    public CheckBoxCurso(JCheckBox checkbox, NotasCurso curso, Color color_curso) {
         this.checkbox = checkbox;
         this.curso = curso;
+        this.color_curso = color_curso;
     }
     
 }

@@ -11,6 +11,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
@@ -61,7 +62,6 @@ public class PanelCursos extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         jpaneCheckBox = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -74,13 +74,6 @@ public class PanelCursos extends javax.swing.JPanel {
         jpaneCheckBox.setLayout(new javax.swing.BoxLayout(jpaneCheckBox, javax.swing.BoxLayout.PAGE_AXIS));
         jScrollPane2.setViewportView(jpaneCheckBox);
 
-        jButton1.setText("Mostrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -89,9 +82,7 @@ public class PanelCursos extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -99,11 +90,8 @@ public class PanelCursos extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
                 .addContainerGap())
         );
 
@@ -121,7 +109,7 @@ public class PanelCursos extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(291, Short.MAX_VALUE))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -136,13 +124,8 @@ public class PanelCursos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        generarGraficos();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -151,6 +134,47 @@ public class PanelCursos extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void generarGraficos() {
+        XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
+
+        renderer.setSeriesStroke(0, new BasicStroke(4.0f));
+        renderer.setSeriesStroke(1, new BasicStroke(3.0f));
+        renderer.setSeriesStroke(2, new BasicStroke(2.0f));
+        XYSeriesCollection dataset = new XYSeriesCollection();
+        Iterator<CheckBoxCurso> iterador = cursos.iterator();
+
+        XYSeries curso_line;
+        int it = 0;
+
+        while (iterador.hasNext()) {
+            CheckBoxCurso cbc = iterador.next();
+            if (cbc.checkbox.isSelected()) {
+                NotasCurso curso = cbc.curso;
+                curso_line = new XYSeries(curso.getNombre());
+                if (curso.getNota1() != null) {
+                    curso_line.add(1, curso.getNota1());
+                }
+                if (curso.getNota2() != null) {
+                    curso_line.add(2, curso.getNota2());
+                }
+                if (curso.getNota3() != null) {
+                    curso_line.add(3, curso.getNota3());
+                }
+                if (curso.getNota4() != null) {
+                    curso_line.add(4, curso.getNota4());
+                }
+                dataset.addSeries(curso_line);
+                renderer.setSeriesPaint(it, cbc.color_curso);
+                it++;
+            }
+        }
+        //agregamos gráfica de nota máxima y mínima y módulo de 1 a 4
+        curso_line = new XYSeries("-");
+        curso_line.add(1, 0);
+        curso_line.add(4, 20);
+        dataset.addSeries(curso_line);
+        renderer.setSeriesPaint(it, new Color(255, 200, 0, 0));
+
+        /*
         XYSeries carro = new XYSeries("Automóvil");
         carro.add(1, 1);
         carro.add(2, 4);
@@ -170,48 +194,40 @@ public class PanelCursos extends javax.swing.JPanel {
         dataset.addSeries(carro);
         dataset.addSeries(bici);
         dataset.addSeries(moto);
-
+         */
         JFreeChart xylineChart = ChartFactory.createXYLineChart(
-                "Gráfica XY",
-                "Transporte",
+                "Evolución de tus notas",
+                "Módulo",
                 "Puntuación",
                 dataset,
                 PlotOrientation.VERTICAL,
                 true, true, false);
 
         XYPlot plot = xylineChart.getXYPlot();
-
-        XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
-        renderer.setSeriesPaint(0, Color.RED);
-        renderer.setSeriesPaint(1, Color.RED);
-        renderer.setSeriesPaint(2, Color.RED);
-
-        renderer.setSeriesStroke(0, new BasicStroke(4.0f));
-        renderer.setSeriesStroke(1, new BasicStroke(3.0f));
-        renderer.setSeriesStroke(2, new BasicStroke(2.0f));
-
         plot.setRenderer(renderer);
 
         ChartPanel panel = new ChartPanel(xylineChart);
-
         jScrollPane1.setViewportView(panel);
     }
 
     private void cargarCursos() {
-        addCurso("Taller de Desarrollo de Software I", 15.4, 18.2, null, null);
-        addCurso("Taller de Procesamiento Distribuido", 14.2, 16.3, null, null);
-        addCurso("Taller de Innovación Tecnológica", 14.2, 14.2, null, null);
-        addCurso("Ética, Responsabilidad Social y Ambiental", 15.0, 14.3, null, null);
-        addCurso("Fundamentos de Sistemas de Información", 14.1, 14.1, null, null);
-        
+        addCurso("Taller de Desarrollo de Software I", 15.4, 18.2, null, null, Color.GREEN);
+        addCurso("Taller de Procesamiento Distribuido", 14.2, 16.3, null, null, Color.RED);
+        addCurso("Taller de Innovación Tecnológica", 14.2, 14.2, null, null, Color.BLUE);
+        addCurso("Ética, Responsabilidad Social y Ambiental", 15.0, 14.3, null, null, Color.YELLOW);
+        addCurso("Fundamentos de Sistemas de Información", 14.1, 14.1, null, null, Color.MAGENTA);
+
         System.out.println("cursos cargados");
     }
 
-    private void addCurso(String nombre, Double n1, Double n2, Double n3, Double n4) {
+    private void addCurso(String nombre, Double n1, Double n2, Double n3, Double n4, Color color_curso) {
         NotasCurso curso = new NotasCurso(nombre);
         JCheckBox checkbox = new JCheckBox();
         checkbox.setBackground(new java.awt.Color(255, 255, 255));
         checkbox.setText(curso.getNombre());
+        checkbox.addActionListener((java.awt.event.ActionEvent evt) -> {
+            generarGraficos();
+        });
         if (n1 != null) {
             curso.setNota1(n1);
         }
@@ -224,7 +240,7 @@ public class PanelCursos extends javax.swing.JPanel {
         if (n4 != null) {
             curso.setNota4(n4);
         }
-        cursos.add(new CheckBoxCurso(checkbox, curso));
+        cursos.add(new CheckBoxCurso(checkbox, curso, color_curso));
         jpaneCheckBox.add(checkbox);
         //jpaneCheckBox.updateUI();
     }
