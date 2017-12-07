@@ -5,6 +5,7 @@
  */
 package gui;
 
+import complementos.AtributosGUI;
 import dao.UsuarioDAO;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
@@ -305,7 +306,8 @@ public class LogIn extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 //new LogIn().setVisible(true);
-                new PrincipalGUI().setVisible(true);
+                //new PrincipalGUI().setVisible(true);
+                new PrincipalGUIOpcional().setVisible(true);
             }
         });
     }

@@ -2,6 +2,7 @@ package gui;
 
 import complementos.itemPanel;
 import complementos.AtributosGUI;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -9,14 +10,14 @@ import javax.swing.JPanel;
  *
  * @author Alisoft
  */
-public class PrincipalGUI extends javax.swing.JFrame {
+public class PrincipalGUIOpcional extends JFrame {
 
     complementos.itemPanel itemPanels[];
 
     /**
      * Creates new form PrincipalGUI
      */
-    public PrincipalGUI() {
+    public PrincipalGUIOpcional() {
         initComponents();
         AtributosGUI.setColoresEstandar();
         codigoInicial();
@@ -32,6 +33,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jpaneFondo = new javax.swing.JPanel();
+        jpanePrincipal = new javax.swing.JPanel();
+        jscrollpanePaneles = new javax.swing.JScrollPane();
         jpaneMenu = new javax.swing.JPanel();
         jpaneMenuItems = new javax.swing.JPanel();
         jpanePerfil = new javax.swing.JPanel();
@@ -49,10 +52,12 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jpaneSalud = new javax.swing.JPanel();
         jpaneActiveSalud = new javax.swing.JPanel();
         jlblSalud = new javax.swing.JLabel();
-        jpanePrincipal = new javax.swing.JPanel();
-        jscrollpanePaneles = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jpanePrincipal.setBackground(new java.awt.Color(255, 255, 255));
+
+        jscrollpanePaneles.setBackground(new java.awt.Color(255, 255, 255));
 
         jpaneMenu.setBackground(new java.awt.Color(51, 153, 255));
         jpaneMenu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -86,7 +91,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jlblPerfil.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jlblPerfil.setForeground(new java.awt.Color(255, 255, 255));
         jlblPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/white-user-materialdesign-35px.png"))); // NOI18N
-        jlblPerfil.setText("   Mi Perfil");
 
         jpaneActivePerfil.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -149,7 +153,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jlblHorario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jlblHorario.setForeground(new java.awt.Color(255, 255, 255));
         jlblHorario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tabla-materialdesign-35px.png"))); // NOI18N
-        jlblHorario.setText("   Mis Horarios");
 
         javax.swing.GroupLayout jpaneHorarioLayout = new javax.swing.GroupLayout(jpaneHorario);
         jpaneHorario.setLayout(jpaneHorarioLayout);
@@ -158,7 +161,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
             .addGroup(jpaneHorarioLayout.createSequentialGroup()
                 .addComponent(jpaneActiveHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jlblHorario, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                .addComponent(jlblHorario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jpaneHorarioLayout.setVerticalGroup(
@@ -194,7 +197,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jlblTramites.setBackground(new java.awt.Color(255, 255, 255));
         jlblTramites.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tramite-materialdesign-35px.png"))); // NOI18N
-        jlblTramites.setText("   Mis Trámites");
 
         javax.swing.GroupLayout jpaneTramitesLayout = new javax.swing.GroupLayout(jpaneTramites);
         jpaneTramites.setLayout(jpaneTramitesLayout);
@@ -239,7 +241,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jlblCursos.setBackground(new java.awt.Color(255, 255, 255));
         jlblCursos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cursos2-materialdesign-35px.png"))); // NOI18N
-        jlblCursos.setText("   Mis Cursos");
 
         javax.swing.GroupLayout jpaneCursosLayout = new javax.swing.GroupLayout(jpaneCursos);
         jpaneCursos.setLayout(jpaneCursosLayout);
@@ -284,7 +285,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jlblSalud.setBackground(new java.awt.Color(255, 255, 255));
         jlblSalud.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/salud3-materialdesign-35px.png"))); // NOI18N
-        jlblSalud.setText("   Mi Salud");
 
         javax.swing.GroupLayout jpaneSaludLayout = new javax.swing.GroupLayout(jpaneSalud);
         jpaneSalud.setLayout(jpaneSaludLayout);
@@ -315,7 +315,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jpaneMenuItemsLayout.setVerticalGroup(
             jpaneMenuItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpaneMenuItemsLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addComponent(jpanePerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpaneHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -325,7 +325,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 .addComponent(jpaneCursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpaneSalud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(210, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jpaneMenuLayout = new javax.swing.GroupLayout(jpaneMenu);
@@ -337,40 +337,35 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jpaneMenuLayout.setVerticalGroup(
             jpaneMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpaneMenuLayout.createSequentialGroup()
-                .addGap(136, 136, 136)
+                .addContainerGap(150, Short.MAX_VALUE)
                 .addComponent(jpaneMenuItems, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
-
-        jpanePrincipal.setBackground(new java.awt.Color(255, 255, 255));
-
-        jscrollpanePaneles.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jpanePrincipalLayout = new javax.swing.GroupLayout(jpanePrincipal);
         jpanePrincipal.setLayout(jpanePrincipalLayout);
         jpanePrincipalLayout.setHorizontalGroup(
             jpanePrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jscrollpanePaneles, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanePrincipalLayout.createSequentialGroup()
+                .addComponent(jpaneMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jscrollpanePaneles, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE))
         );
         jpanePrincipalLayout.setVerticalGroup(
             jpanePrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jscrollpanePaneles, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jscrollpanePaneles)
+            .addComponent(jpaneMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jpaneFondoLayout = new javax.swing.GroupLayout(jpaneFondo);
         jpaneFondo.setLayout(jpaneFondoLayout);
         jpaneFondoLayout.setHorizontalGroup(
             jpaneFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpaneFondoLayout.createSequentialGroup()
-                .addGap(1, 1, 1)
-                .addComponent(jpaneMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jpanePrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpaneFondoLayout.setVerticalGroup(
             jpaneFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jpanePrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jpaneMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -388,7 +383,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jpaneMenuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpaneMenuMouseEntered
-        abrirMenu();
+        //abrirMenu();
     }//GEN-LAST:event_jpaneMenuMouseEntered
 
     private void jpaneMenuMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpaneMenuMouseReleased
@@ -396,7 +391,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jpaneMenuMouseReleased
 
     private void jpaneMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpaneMenuMouseExited
-        cerrarMenu();
+        //cerrarMenu();
     }//GEN-LAST:event_jpaneMenuMouseExited
 
     private void jpanePerfilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpanePerfilMouseEntered
@@ -494,7 +489,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jpaneMenu.setBackground(AtributosGUI.color_principal);
         setLocationRelativeTo(null);
 
-        Animacion.Animacion.mover_izquierda(0, 10 - jpaneMenu.getWidth(), 6, 3, jpaneMenu);
 
         java.awt.Color color_primario = AtributosGUI.color_principal;
 
@@ -523,31 +517,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jpaneActiveSalud.setBackground(AtributosGUI.item_Off_panel_active);
         jpaneActiveTramites.setBackground(AtributosGUI.item_Off_panel_active);
 
-        String espacios = "   ";
-        jlblPerfil.setText(espacios + "Mi Perfil");
-        jlblHorario.setText(espacios + "Mis Horarios");
-        jlblTramites.setText(espacios + "Mis Trámites");
-        jlblCursos.setText(espacios + "Mis Cursos");
-        jlblSalud.setText(espacios + "Mi Salud");
+       
+
     }
 
-    private void abrirMenu() {
-        jpaneMenu.grabFocus();
-        int pos = jpaneMenu.getX();
-        if (pos < -1) {
-            Animacion.Animacion.mover_derecha(10 - jpaneMenu.getWidth(), 0, 2, 2, jpaneMenu);
-        }
-    }
-
-    private void cerrarMenu() {
-        int xframe, xmouse;
-        xmouse = java.awt.MouseInfo.getPointerInfo().getLocation().x;
-        xframe = getX();
-        int pos = jpaneMenu.getX();
-        if (pos > -1 && (xmouse - xframe) > jpaneMenu.getWidth()) {
-            Animacion.Animacion.mover_izquierda(0, 10 - jpaneMenu.getWidth(), 2, 3, jpaneMenu);
-        }
-    }
+    
 
     private void mouseOverItem(JPanel pane, JPanel active, JLabel label, int item) {
         mouseOverItem(pane, active, label, item, null);
@@ -555,7 +529,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void mouseOverItem(JPanel pane, JPanel active, JLabel label, int item, String icon) {
         if (item >= 1 && item <= 5) {
-            abrirMenu();
+            
             pane.setBackground(AtributosGUI.item_mouseOver_panel);
             label.setForeground(AtributosGUI.item_mouseOver_label_foreground);
             if (icon != null) {
@@ -570,7 +544,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void mouseExitedItem(JPanel pane, JPanel active, JLabel label, int item, String icon) {
         if (item >= 1 && item <= 5) {
-            cerrarMenu();
+            
             if (!itemPanels[item - 1].isOpen()) {
                 pane.setBackground(AtributosGUI.color_principal);
                 label.setForeground(AtributosGUI.item_mouseExited_label_foreground);
@@ -613,35 +587,35 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 case 1:
                     //Perfil seleccionado
                     if (!itemPanels[item - 1].isOpen()) {
-                        itemPanels[item - 1] = new itemPanel(new PanelPerfil(active, this), active, true);
+                        itemPanels[item - 1] = new itemPanel(new PanelPerfil(active, null), active, true);
                         System.out.println("nuevo panel creado");
                     }
                     break;
                 case 2:
                     //Horario seleccionado
                     if (!itemPanels[item - 1].isOpen()) {
-                        itemPanels[item - 1] = new itemPanel(/*new PanelHorario(active, this)*/new PanelHorarioDirector(), active, true);
+                        itemPanels[item - 1] = new itemPanel(/*new PanelHorario(active, this)*/new PanelHorario(), active, true);
                         System.out.println("nuevo panel creado");
                     }
                     break;
                 case 3:
                     //Tramites seleccionado
                     if (!itemPanels[item - 1].isOpen()) {
-                        itemPanels[item - 1] = new itemPanel(new PanelTramites(pane, active, label, this), active, true);
+                        itemPanels[item - 1] = new itemPanel(new PanelTramites(pane, active, label, null), active, true);
                         System.out.println("nuevo panel creado");
                     }
                     break;
                 case 4:
                     //Cursos seleccionado
                     if (!itemPanels[item - 1].isOpen()) {
-                        itemPanels[item - 1] = new itemPanel(new PanelCursos(active, this), active, true);
+                        itemPanels[item - 1] = new itemPanel(new PanelCursos(active, null), active, true);
                         System.out.println("nuevo panel creado");
                     }
                     break;
                 case 5:
                     //Salud seleccionado
                     if (!itemPanels[item - 1].isOpen()) {
-                        itemPanels[item - 1] = new itemPanel(new PanelSalud(active, this), active, true);
+                        itemPanels[item - 1] = new itemPanel(new PanelSalud(active, null), active, true);
                         System.out.println("nuevo panel creado");
                     }
                     break;
@@ -649,18 +623,16 @@ public class PrincipalGUI extends javax.swing.JFrame {
             definirPanel(itemPanels[item - 1].SeleccionarPanel());
             pane.setBackground(AtributosGUI.item_selected_panel);
             jpaneMenu.updateUI();
-            Animacion.Animacion.mover_izquierda(0, 10 - jpaneMenu.getWidth(), 1, 2, jpaneMenu);
         }
     }
 
-    void closeItemPane(JPanel pane, JPanel active, JLabel label, int item) {
+    public void closeItemPane(JPanel pane, JPanel active, JLabel label, int item) {
         if (item >= 1 && item <= 5) {
             if (itemPanels[item - 1].isOpen()) {
                 itemPanels[item - 1] = new itemPanel(null, null, false);
                 active.setBackground(AtributosGUI.item_Off_panel_active);
             }
             jpaneMenu.updateUI();
-            Animacion.Animacion.mover_izquierda(0, 10 - jpaneMenu.getWidth(), 1, 2, jpaneMenu);
         }
         System.out.println("panel " + item + " cerrado");
     }
@@ -684,7 +656,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         System.out.println("paneles desseleccionados");
     }
 
-    private void definirPanel(JPanel panel) {
+    public void definirPanel(JPanel panel) {
         jscrollpanePaneles.setViewportView(panel);
         System.out.println("panel definido");
     }

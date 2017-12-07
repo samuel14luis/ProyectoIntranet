@@ -1,4 +1,4 @@
-package gui;
+package complementos;
 
 import java.awt.Color;
 
@@ -12,23 +12,24 @@ public class AtributosGUI {
      * Sintaxis: - DEFINICION DEL SIGNIFICADO DE CADA COLOR. (valor por defecto)
      * ***********************************************************************
      */
-    static Color color_principal;       // - se utiliza en paneles y fondos, es el color principal del frame. (azul claro)
-    static Color foreground_principal; //  - se utiliza para labels, color 
-    static Color color_secundario;
-    static Color color_success;
-    static Color color_error;
+    public static Color color_principal;       // - se utiliza en paneles y fondos, es el color principal del frame. (azul claro)
+    public static Color foreground_principal; //  - se utiliza para labels, color 
+    public static Color color_secundario;
+    public static Color color_success;
+    public static Color color_error;
 
     /* COLORES PARA LOS ITEMS DEL MENU */
-    static Color item_mouseOver_panel;
+    public static Color item_mouseOver_panel;
+    public static Color item_selected_panel;
     
-    static Color item_mouseOver_label_foreground;
-    static Color item_mouseExited_label_foreground;
+    public static Color item_mouseOver_label_foreground;
+    public static Color item_mouseExited_label_foreground;
     
-    static Color item_On_panel_active;
-    static Color item_Clicked_panel_active;
-    static Color item_Off_panel_active;
+    public static Color item_On_panel_active;
+    public static Color item_Clicked_panel_active;
+    public static Color item_Off_panel_active;
     
-    static java.awt.Font item_label_font;
+    public static java.awt.Font item_label_font;
 
     /**
      * ***********************************************************************
@@ -46,9 +47,10 @@ public class AtributosGUI {
 
         /* COLORES PARA LOS ITEMS DEL MENU */
         item_mouseOver_panel = new Color(51, 146, 248); //color del panel cuando el mouse esta encima
+        item_selected_panel = new Color(33, 135, 248); //color del panel cuando el mouse esta encima
         
-        item_mouseOver_label_foreground = new Color(255, 255, 255);//color de la letra cuando el mouse esta encima
-        item_mouseExited_label_foreground = new Color(255, 255, 255);//color de la letra cuando el mouse esta encima
+        item_mouseOver_label_foreground = new Color(235, 235, 245);//color de la letra cuando el mouse esta encima
+        item_mouseExited_label_foreground = new Color(255, 255, 255);//color de la letra cuando el mouse sale del label
         
         item_On_panel_active = new Color(255, 255, 255);//color del ActivePanel cuando el mouse esta encima
         item_Clicked_panel_active = new Color(202, 255, 89);//color del ActivePanel cuando se ha hecho click en él
