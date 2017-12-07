@@ -5,7 +5,23 @@
  */
 package gui;
 
+import complementos.CheckBoxCurso;
+import complementos.NotasCurso;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JPanel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 /**
  *
@@ -15,9 +31,11 @@ public class PanelCursos extends javax.swing.JPanel {
 
     private final JPanel active;
     private final PrincipalGUI principal;
-    
+    ArrayList<CheckBoxCurso> cursos;
+
     /**
      * Creates new form PanelCursos
+     *
      * @param active
      * @param principal
      */
@@ -25,8 +43,9 @@ public class PanelCursos extends javax.swing.JPanel {
         initComponents();
         this.active = active;
         this.principal = principal;
+        cursos = new ArrayList<>();
+        cargarCursos();
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,27 +57,78 @@ public class PanelCursos extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jpaneCheckBox = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
-        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Estadísticas Generales"));
+
+        jScrollPane2.setBorder(null);
+
+        jpaneCheckBox.setBackground(new java.awt.Color(255, 255, 255));
+        jpaneCheckBox.setLayout(new javax.swing.BoxLayout(jpaneCheckBox, javax.swing.BoxLayout.PAGE_AXIS));
+        jScrollPane2.setViewportView(jpaneCheckBox);
+
+        jButton1.setText("Mostrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 697, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 512, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(291, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -66,8 +136,97 @@ public class PanelCursos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        generarGraficos();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel jpaneCheckBox;
     // End of variables declaration//GEN-END:variables
+
+    private void generarGraficos() {
+        XYSeries carro = new XYSeries("Automóvil");
+        carro.add(1, 1);
+        carro.add(2, 4);
+        carro.add(3, 3);
+
+        XYSeries bici = new XYSeries("Bicicleta");
+        bici.add(1, 4);
+        bici.add(2, 5);
+        bici.add(3, 6);
+
+        XYSeries moto = new XYSeries("Motocicleta");
+        moto.add(3, 4);
+        moto.add(4, 5);
+        moto.add(5, 4);
+
+        XYSeriesCollection dataset = new XYSeriesCollection();
+        dataset.addSeries(carro);
+        dataset.addSeries(bici);
+        dataset.addSeries(moto);
+
+        JFreeChart xylineChart = ChartFactory.createXYLineChart(
+                "Gráfica XY",
+                "Transporte",
+                "Puntuación",
+                dataset,
+                PlotOrientation.VERTICAL,
+                true, true, false);
+
+        XYPlot plot = xylineChart.getXYPlot();
+
+        XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
+        renderer.setSeriesPaint(0, Color.RED);
+        renderer.setSeriesPaint(1, Color.RED);
+        renderer.setSeriesPaint(2, Color.RED);
+
+        renderer.setSeriesStroke(0, new BasicStroke(4.0f));
+        renderer.setSeriesStroke(1, new BasicStroke(3.0f));
+        renderer.setSeriesStroke(2, new BasicStroke(2.0f));
+
+        plot.setRenderer(renderer);
+
+        ChartPanel panel = new ChartPanel(xylineChart);
+
+        jScrollPane1.setViewportView(panel);
+    }
+
+    private void cargarCursos() {
+        addCurso("Taller de Desarrollo de Software I", 15.4, 18.2, null, null);
+        addCurso("Taller de Procesamiento Distribuido", 14.2, 16.3, null, null);
+        addCurso("Taller de Innovación Tecnológica", 14.2, 14.2, null, null);
+        addCurso("Ética, Responsabilidad Social y Ambiental", 15.0, 14.3, null, null);
+        addCurso("Fundamentos de Sistemas de Información", 14.1, 14.1, null, null);
+        
+        System.out.println("cursos cargados");
+    }
+
+    private void addCurso(String nombre, Double n1, Double n2, Double n3, Double n4) {
+        NotasCurso curso = new NotasCurso(nombre);
+        JCheckBox checkbox = new JCheckBox();
+        checkbox.setBackground(new java.awt.Color(255, 255, 255));
+        checkbox.setText(curso.getNombre());
+        if (n1 != null) {
+            curso.setNota1(n1);
+        }
+        if (n2 != null) {
+            curso.setNota2(n2);
+        }
+        if (n3 != null) {
+            curso.setNota3(n3);
+        }
+        if (n4 != null) {
+            curso.setNota4(n4);
+        }
+        cursos.add(new CheckBoxCurso(checkbox, curso));
+        jpaneCheckBox.add(checkbox);
+        //jpaneCheckBox.updateUI();
+    }
+
 }
