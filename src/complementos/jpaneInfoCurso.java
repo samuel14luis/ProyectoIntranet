@@ -9,6 +9,7 @@ import java.awt.Color;
 public class jpaneInfoCurso extends javax.swing.JPanel {
 
     Color color_curso;
+    NotasCurso curso;
     
     /**
      * Creates new form jpaneInfoCurso
@@ -17,7 +18,9 @@ public class jpaneInfoCurso extends javax.swing.JPanel {
      */
     public jpaneInfoCurso(NotasCurso curso, Color color_curso) {
         this.color_curso = color_curso;
+        this.curso = curso;
         initComponents();            
+        
     }
 
     /**
@@ -44,7 +47,6 @@ public class jpaneInfoCurso extends javax.swing.JPanel {
         jlblInasistencias = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jlblNombreDocente = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -77,7 +79,7 @@ public class jpaneInfoCurso extends javax.swing.JPanel {
 
         jlblNombreCurso.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jlblNombreCurso.setForeground(new java.awt.Color(255, 255, 255));
-        jlblNombreCurso.setText("Taller de Desarrollo de Software I");
+        jlblNombreCurso.setText(curso.getNombre());
 
         jlblDescargarSillabus.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jlblDescargarSillabus.setForeground(new java.awt.Color(255, 255, 255));
@@ -138,20 +140,7 @@ public class jpaneInfoCurso extends javax.swing.JPanel {
 
         jlblNombreDocente.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jlblNombreDocente.setForeground(new java.awt.Color(102, 102, 102));
-        jlblNombreDocente.setText("FARRO PACÍFICO Edwin Iván");
-
-        jPanel1.setBackground(color_curso);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2, Short.MAX_VALUE)
-        );
+        jlblNombreDocente.setText(curso.getDocente());
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -185,7 +174,6 @@ public class jpaneInfoCurso extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jlblInasistencias)))
                         .addGap(15, 15, 15))))
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,9 +195,7 @@ public class jpaneInfoCurso extends javax.swing.JPanel {
                     .addComponent(jlblPuntosParaAprobar)
                     .addComponent(jLabel14)
                     .addComponent(jlblInasistencias))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1))
+                .addGap(9, 9, 9))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -231,7 +217,6 @@ public class jpaneInfoCurso extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel jlblDescargarSillabus;
