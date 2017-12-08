@@ -31,6 +31,7 @@ import org.jfree.data.xy.XYSeriesCollection;
  */
 public class PanelCursos extends javax.swing.JPanel {
 
+    public boolean disponible = true;
     private final JPanel active;
     private final PrincipalGUI principal;
     ArrayList<CheckBoxCurso> cursos;
@@ -321,6 +322,7 @@ public class PanelCursos extends javax.swing.JPanel {
     }
 
     private void cargarCursos() {
+        /*
         addCurso(
                 "Taller de Desarrollo de Software I", "FARRO PACÍFICO Edwin Iván",4d, Colores.getColorAt(0), 
                 19.4, 19.2, 19.0, 
@@ -361,7 +363,33 @@ public class PanelCursos extends javax.swing.JPanel {
                 10.4, 18.2, 15.4,
                 0
                 );
-
+        */
+        
+        addCurso(
+                "Curso 1", "sin nombre",3d, Colores.getColorAt(2), 
+                10.0,10.0,12.0,
+                11.0,11.0,13.0,
+                11.0,11.0,12.0,
+                null,null,null,
+                0
+                );
+        addCurso(
+                "Curso 2", "sin nombre",3d, Colores.getColorAt(4), 
+                9.0,7.0,8.0, 
+                2.0,5.0,5.0,
+                6.0,10.0,9.0,
+                null,null,null,
+                0
+                );
+        addCurso(
+                "Curso 3", "sin nombre",3d, Colores.getColorAt(7), 
+                13.0,13.0,13.0, 
+                8.0,8.0,8.0,
+                10.0,10.0,10.0,
+                null,null,null,
+                0
+                );
+        
         System.out.println("cursos cargados");
     }
 

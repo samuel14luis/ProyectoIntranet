@@ -587,7 +587,13 @@ public class PrincipalGUIOpcional extends JFrame {
                 case 1:
                     //Perfil seleccionado
                     if (!itemPanels[item - 1].isOpen()) {
-                        itemPanels[item - 1] = new itemPanel(new PanelPerfil(active, null), active, true);
+                        if (PanelPerfil.disponible) {
+                            System.out.println("panel disponible");
+                            itemPanels[item - 1] = new itemPanel(new PanelPerfil(active, null), active, true);
+                        } else {
+                            System.out.println("panel perfil no disponible");
+                            itemPanels[item - 1] = new itemPanel(new panelEnConstruccion(), active, true);
+                        }
                         System.out.println("nuevo panel creado");
                     }
                     break;

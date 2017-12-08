@@ -13,6 +13,7 @@ import javax.swing.JPanel;
  */
 public class PanelPerfil extends javax.swing.JPanel {
 
+    public static boolean disponible = false;
     private final JPanel active;
     private final PrincipalGUI principal;
 

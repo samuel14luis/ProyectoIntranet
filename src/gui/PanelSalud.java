@@ -13,6 +13,7 @@ import javax.swing.JPanel;
  */
 public class PanelSalud extends javax.swing.JPanel {
 
+    public boolean disponible = false;
     private final JPanel active;
     private final PrincipalGUI principal;
     

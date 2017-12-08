@@ -6,7 +6,6 @@
 
 package gui;
 
-import javax.swing.JPanel;
 
 /**
  *
@@ -14,6 +13,7 @@ import javax.swing.JPanel;
  */
 public class PanelHorario extends javax.swing.JPanel {
 
+    public boolean disponible = true;
     
     /** Creates new form PanelHorario */
     public PanelHorario() {

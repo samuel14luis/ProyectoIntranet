@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PanelTablaHorarioAula extends javax.swing.JPanel {
 
+    public boolean disponible = true;
     DefaultTableModel modelo;    
     
     public PanelTablaHorarioAula() {

@@ -603,7 +603,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         s.start();
     }
 
-    private void itemClicked(JPanel pane, JPanel active, JLabel label, int item) {
+    public void itemClicked(JPanel pane, JPanel active, JLabel label, int item) {
         if (item >= 1 && item <= 5) {
             //esta entre el item 1 y el item 5
             //cerrar menú rapidamente
@@ -613,7 +613,13 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 case 1:
                     //Perfil seleccionado
                     if (!itemPanels[item - 1].isOpen()) {
-                        itemPanels[item - 1] = new itemPanel(new PanelPerfil(active, this), active, true);
+                        if (PanelPerfil.disponible) {
+                            System.out.println("panel disponible");
+                            itemPanels[item - 1] = new itemPanel(new PanelPerfil(active, this), active, true);
+                        } else {
+                            System.out.println("panel perfil no disponible");
+                            itemPanels[item - 1] = new itemPanel(new panelEnConstruccion(), active, true);
+                        }
                         System.out.println("nuevo panel creado");
                     }
                     break;

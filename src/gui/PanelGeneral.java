@@ -11,9 +11,8 @@ package gui;
  */
 public class PanelGeneral extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelGeneral
-     */
+    public boolean disponible = true;
+    
     public PanelGeneral() {
         initComponents();
     }

@@ -12,9 +12,8 @@ package gui;
  */
 public class PanelHorarioDirector extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelHorarioDirector
-     */
+    public boolean disponible = true;
+    
     public PanelHorarioDirector() {
         initComponents();
     }

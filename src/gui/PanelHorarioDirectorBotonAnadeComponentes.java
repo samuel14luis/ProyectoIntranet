@@ -16,9 +16,8 @@ import javax.swing.JButton;
  */
 public class PanelHorarioDirectorBotonAnadeComponentes extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelHorarioDirector
-     */
+    public boolean disponible = true;
+    
     public PanelHorarioDirectorBotonAnadeComponentes() {
         initComponents();
     }

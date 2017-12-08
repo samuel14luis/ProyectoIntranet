@@ -20,6 +20,7 @@ import javax.swing.JPanel;
  */
 public class PanelTramites extends javax.swing.JPanel {
     
+    public boolean disponible = true;
     private ArrayList<JButton> botones;
 
     private final JPanel pane;
