@@ -14,6 +14,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
@@ -68,15 +70,15 @@ public class PanelCursos extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         jpaneCheckBox = new javax.swing.JPanel();
-        jspInfoCursos = new javax.swing.JScrollPane();
-        jpaneInfoCursos = new javax.swing.JPanel();
         jspPuestosAula = new javax.swing.JScrollPane();
         jpanePruebas = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jspInfoCursos = new javax.swing.JScrollPane();
+        jpaneInfoCursos = new javax.swing.JPanel();
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(233, 235, 238));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Estadísticas Generales"));
 
         jScrollPane2.setBorder(null);
 
@@ -89,7 +91,7 @@ public class PanelCursos extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(15, 15, 15)
                 .addComponent(jScrollPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -98,12 +100,17 @@ public class PanelCursos extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
-                .addContainerGap())
+                .addGap(15, 15, 15))
         );
+
+        jpanePruebas.setLayout(new javax.swing.BoxLayout(jpanePruebas, javax.swing.BoxLayout.PAGE_AXIS));
+        jspPuestosAula.setViewportView(jpanePruebas);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jspInfoCursos.setBackground(new java.awt.Color(255, 255, 255));
         jspInfoCursos.setBorder(null);
@@ -116,32 +123,20 @@ public class PanelCursos extends javax.swing.JPanel {
         jpaneInfoCursos.setLayout(new javax.swing.BoxLayout(jpaneInfoCursos, javax.swing.BoxLayout.PAGE_AXIS));
         jspInfoCursos.setViewportView(jpaneInfoCursos);
 
-        jpanePruebas.setLayout(new javax.swing.BoxLayout(jpanePruebas, javax.swing.BoxLayout.PAGE_AXIS));
-        jspPuestosAula.setViewportView(jpanePruebas);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jspInfoCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jspPuestosAula, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)))
-                .addContainerGap())
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jspInfoCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jspPuestosAula, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                    .addComponent(jspInfoCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jspInfoCursos, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -151,6 +146,32 @@ public class PanelCursos extends javax.swing.JPanel {
         jspInfoCursos.getViewport().setBorder(null);
         jspInfoCursos.setViewportBorder(null);
         jspInfoCursos.setBorder(null);*/
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jspPuestosAula, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)))
+                .addGap(20, 20, 20))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jspPuestosAula))
+                .addGap(20, 20, 20))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -168,6 +189,7 @@ public class PanelCursos extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel jpaneCheckBox;
@@ -344,7 +366,7 @@ public class PanelCursos extends javax.swing.JPanel {
 
     private void agregarCurso(NotasCurso curso, Color color_curso) {
         jpaneInfoCurso info_curso = new jpaneInfoCurso(curso, color_curso);
-        Dimension d = new Dimension(479 - 15, 277);
+        Dimension d = new Dimension(479 - 15, 225);
         //Dimension d = new Dimension(jpaneInfoCursos.getWidth()-15, 269);
         info_curso.setMinimumSize(d);
         info_curso.setMaximumSize(d);
@@ -360,6 +382,11 @@ public class PanelCursos extends javax.swing.JPanel {
     private void agregarInfoCursos() {
         for (int i = 0; i < cursos.size(); i++) {
             agregarCurso(cursos.get(i).curso, cursos.get(i).color_curso);
+            try {
+                Thread.sleep(1200);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(PanelCursos.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

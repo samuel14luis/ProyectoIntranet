@@ -74,6 +74,7 @@ public class jpaneInfoCurso extends javax.swing.JPanel {
             }
         }
     );
+    jtblNotas.setGridColor(new java.awt.Color(255, 255, 255));
     jtblNotas.setSelectionBackground(color_curso);
     jtblNotas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
     jtblNotas.getTableHeader().setReorderingAllowed(false);
@@ -197,8 +198,8 @@ public class jpaneInfoCurso extends javax.swing.JPanel {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(jLabel2)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel10)
                 .addComponent(jlblPromedioAcumulado)
