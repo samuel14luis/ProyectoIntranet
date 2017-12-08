@@ -6,6 +6,7 @@
 package gui;
 
 import complementos.CheckBoxCurso;
+import complementos.Colores;
 import complementos.NotasCurso;
 import complementos.jpaneInfoCurso;
 import java.awt.BasicStroke;
@@ -13,7 +14,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Iterator;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
@@ -46,9 +46,9 @@ public class PanelCursos extends javax.swing.JPanel {
         this.active = active;
         this.principal = principal;
         cursos = new ArrayList<>();
-        cargarCursos();        
+        cargarCursos();
         Thread hilo = new Thread(() -> {
-            generarGraficos();    
+            generarGraficos();
             agregarInfoCursos();
         });
         hilo.start();
@@ -194,22 +194,23 @@ public class PanelCursos extends javax.swing.JPanel {
             NotasCurso curso = cbc.curso;
             if (cbc.checkbox.isSelected()) {
                 curso_line = new XYSeries(curso.getNombre());
-                if (curso.getNota1() != null) {
-                    curso_line.add(1, curso.getNota1());
+                
+                if (curso.getPromedioDeModulo1() != null) {
+                    curso_line.add(1, curso.getPromedioDeModulo1());
                 }
-                if (curso.getNota2() != null) {
-                    curso_line.add(2, curso.getNota2());
+                if (curso.getPromedioDeModulo2() != null) {
+                    curso_line.add(2, curso.getPromedioDeModulo2());
                 }
-                if (curso.getNota3() != null) {
-                    curso_line.add(3, curso.getNota3());
+                if (curso.getPromedioDeModulo3() != null) {
+                    curso_line.add(3, curso.getPromedioDeModulo3());
                 }
-                if (curso.getNota4() != null) {
-                    curso_line.add(4, curso.getNota4());
+                if (curso.getPromedioDeModulo4() != null) {
+                    curso_line.add(4, curso.getPromedioDeModulo4());
                 }
                 dataset.addSeries(curso_line);
                 renderer.setSeriesPaint(it, cbc.color_curso);
                 it++;
-            }            
+            }
         }
         //agregamos gráfica de nota máxima y mínima y módulo de 1 a 4
         curso_line = new XYSeries("-");
@@ -234,16 +235,51 @@ public class PanelCursos extends javax.swing.JPanel {
     }
 
     private void cargarCursos() {
-        addCurso("Taller de Desarrollo de Software I", "FARRO PACÍFICO Edwin Iván", 15.4, 18.2, null, null, Color.GREEN);
-        addCurso("Taller de Procesamiento Distribuido", "GALLARDO ANDRÉS Jhonar Ángel", 14.2, 16.3, null, null, Color.RED);
-        addCurso("Taller de Innovación Tecnológica", "LEÓN JULCA Manuel Antonio", 14.2, 14.2, null, null, Color.BLUE);
-        addCurso("Ética, Responsabilidad Social y Ambiental", "CRUZ CASTAÑEDA Carlos Manuel", 15.0, 14.3, null, null, Color.YELLOW);
-        addCurso("Fundamentos de Sistemas de Información", "MEYHUAY FIDEL Juan Carlos", 14.1, 14.1, null, null, Color.MAGENTA);
+        addCurso(
+                "Taller de Desarrollo de Software I", "FARRO PACÍFICO Edwin Iván", Colores.getColorAt(0), 
+                19.4, 19.2, 19.0, 
+                18.4, 18.2, 20.0,
+                19.4, 19.2, 19.4,
+                19.4, 18.2, 18.4,
+                0
+                );
+        addCurso(
+                "Taller de Procesamiento Distribuido", "GALLARDO ANDRÉS Jhonar Ángel", Colores.getColorAt(1), 
+                15.4, 18.2, 15.4, 
+                15.4, 18.2, 15.4,
+                15.4, 18.2, 15.4,
+                15.4, 18.2, 15.4,
+                0
+                );
+        addCurso(
+                "Taller de Innovación Tecnológica", "LEÓN JULCA Manuel Antonio", Colores.getColorAt(2), 
+                15.4, 18.2, 15.4, 
+                11.4, 18.2, 11.4,
+                15.4, 12.2, 15.4,
+                15.4, 18.2, 15.4,
+                0
+                );
+        addCurso(
+                "Ética, Responsabilidad Social y Ambiental", "CRUZ CASTAÑEDA Carlos Manuel", Colores.getColorAt(3), 
+                15.4, 18.2, 18.4, 
+                15.4, 12.2, 15.4,
+                10.4, 18.2, 15.4,
+                15.4, 10.2, 17.4,
+                0
+                );
+        addCurso(
+                "Fundamentos de Sistemas de Información", "MEYHUAY FIDEL Juan Carlos", Colores.getColorAt(7), 
+                15.4, 10.2, 10.4, 
+                12.4, 12.2, 15.4,
+                10.4, 14.2, 10.4,
+                10.4, 18.2, 15.4,
+                0
+                );
 
         System.out.println("cursos cargados");
     }
 
-    private void addCurso(String nombre, String docente, Double n1, Double n2, Double n3, Double n4, Color color_curso) {
+    private void addCurso(String nombre, String docente, Color color_curso, Double ec1, Double ep1, Double ed1, Double ec2, Double ep2, Double ed2, Double ec3, Double ep3, Double ed3, Double ec4, Double ep4, Double ed4, int inasistencias) {
         NotasCurso curso = new NotasCurso(nombre, docente);
         JCheckBox checkbox = new JCheckBox();
         checkbox.setBackground(new java.awt.Color(255, 255, 255));
@@ -252,41 +288,78 @@ public class PanelCursos extends javax.swing.JPanel {
         checkbox.addActionListener((java.awt.event.ActionEvent evt) -> {
             generarGraficos();
         });
-        if (n1 != null) {
-            curso.setNota1(n1);
+        
+        //<editor-fold defaultstate="collapsed" desc="Condicionales">
+        if (inasistencias<=0) {
+            curso.setInasistencias(0);
+        }else{
+            curso.setInasistencias(inasistencias);
         }
-        if (n2 != null) {
-            curso.setNota2(n2);
+        
+        if (ec1 != null) {
+            curso.setEc1(ec1);
         }
-        if (n3 != null) {
-            curso.setNota3(n3);
+        if (ep1 != null) {
+            curso.setEp1(ep1);
         }
-        if (n4 != null) {
-            curso.setNota4(n4);
+        if (ed1 != null) {
+            curso.setEd1(ed1);
         }
+        
+        if (ec2 != null) {
+            curso.setEc2(ec2);
+        }
+        if (ep2 != null) {
+            curso.setEp2(ep2);
+        }
+        if (ed2 != null) {
+            curso.setEd2(ed2);
+        }
+        
+        if (ec3 != null) {
+            curso.setEc3(ec3);
+        }
+        if (ep3 != null) {
+            curso.setEp3(ep3);
+        }
+        if (ed3 != null) {
+            curso.setEd3(ed3);
+        }
+        
+        if (ec4 != null) {
+            curso.setEc4(ec4);
+        }
+        if (ep4 != null) {
+            curso.setEp4(ep4);
+        }
+        if (ed4 != null) {
+            curso.setEd4(ed4);
+        }
+//</editor-fold>
+
         cursos.add(new CheckBoxCurso(checkbox, curso, color_curso));
         jpaneCheckBox.add(checkbox);
         //jpaneCheckBox.updateUI();
     }
 
     private void agregarCurso(NotasCurso curso, Color color_curso) {
-        jpaneInfoCurso info_curso = new jpaneInfoCurso(curso,color_curso);
-        Dimension d = new Dimension(479-15, 267);
+        jpaneInfoCurso info_curso = new jpaneInfoCurso(curso, color_curso);
+        Dimension d = new Dimension(479 - 15, 277);
         //Dimension d = new Dimension(jpaneInfoCursos.getWidth()-15, 269);
         info_curso.setMinimumSize(d);
         info_curso.setMaximumSize(d);
         info_curso.setPreferredSize(d);
         info_curso.setVisible(true);
-        
+
         jpaneInfoCursos.add(info_curso);
         jpaneInfoCursos.updateUI();
-        
-        System.out.println("added: "+curso.getNombre());
+
+        System.out.println("added: " + curso.getNombre());
     }
 
     private void agregarInfoCursos() {
         for (int i = 0; i < cursos.size(); i++) {
-            agregarCurso(cursos.get(i).curso,cursos.get(i).color_curso);
+            agregarCurso(cursos.get(i).curso, cursos.get(i).color_curso);
         }
     }
 
