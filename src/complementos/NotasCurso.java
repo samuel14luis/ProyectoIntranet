@@ -16,12 +16,22 @@ public class NotasCurso {
     private Double ec2, ep2, ed2;
     private Double ec3, ep3, ed3;
     private Double ec4, ep4, ed4;
+    private Double creditos;
     private int inasistencias;
 
-    public NotasCurso(String nombre, String docente) {
+    public NotasCurso(String nombre, String docente, Double creditos) {
         this.nombre = nombre;
         this.docente = docente;
         inasistencias = 0;
+        this.creditos = creditos;
+    }
+
+    public Double getCreditos() {
+        return creditos;
+    }
+
+    public void setCreditos(Double creditos) {
+        this.creditos = creditos;
     }
 
     public Double getPAcumulado() {
@@ -206,11 +216,11 @@ public class NotasCurso {
         this.inasistencias = inasistencias;
     }
 
-    private Double format(double d) {
+    public static Double format(double d) {
         return (double) Math.round(d * 10d) / 10d;
     }
 
-    private Double validarNota(Double nota) {
+    public static Double validarNota(Double nota) {
         if (nota >= 2020.0) {
             return 20.0;
         } else if (nota <= 0.0) {

@@ -14,8 +14,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
@@ -52,6 +50,7 @@ public class PanelCursos extends javax.swing.JPanel {
         Thread hilo = new Thread(() -> {
             generarGraficos();
             agregarInfoCursos();
+            jlblPonderadoAcumulado.setText(""+calcularPonderado());
         });
         hilo.start();
     }
@@ -75,6 +74,11 @@ public class PanelCursos extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jspInfoCursos = new javax.swing.JScrollPane();
         jpaneInfoCursos = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jlblPonderadoAcumulado = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jlblCreditos = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(233, 235, 238));
 
@@ -107,7 +111,17 @@ public class PanelCursos extends javax.swing.JPanel {
                 .addGap(15, 15, 15))
         );
 
-        jpanePruebas.setLayout(new javax.swing.BoxLayout(jpanePruebas, javax.swing.BoxLayout.PAGE_AXIS));
+        javax.swing.GroupLayout jpanePruebasLayout = new javax.swing.GroupLayout(jpanePruebas);
+        jpanePruebas.setLayout(jpanePruebasLayout);
+        jpanePruebasLayout.setHorizontalGroup(
+            jpanePruebasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 589, Short.MAX_VALUE)
+        );
+        jpanePruebasLayout.setVerticalGroup(
+            jpanePruebasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 294, Short.MAX_VALUE)
+        );
+
         jspPuestosAula.setViewportView(jpanePruebas);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -123,21 +137,68 @@ public class PanelCursos extends javax.swing.JPanel {
         jpaneInfoCursos.setLayout(new javax.swing.BoxLayout(jpaneInfoCursos, javax.swing.BoxLayout.PAGE_AXIS));
         jspInfoCursos.setViewportView(jpaneInfoCursos);
 
+        jPanel4.setBackground(new java.awt.Color(44, 62, 80));
+
+        jLabel1.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Promedio Ponderado Acumulado:");
+
+        jlblPonderadoAcumulado.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jlblPonderadoAcumulado.setForeground(new java.awt.Color(255, 255, 255));
+        jlblPonderadoAcumulado.setText("15.2");
+
+        jLabel2.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Créditos: ");
+
+        jlblCreditos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jlblCreditos.setForeground(new java.awt.Color(255, 255, 255));
+        jlblCreditos.setText("24");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jlblPonderadoAcumulado, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlblCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jlblPonderadoAcumulado)
+                    .addComponent(jLabel2)
+                    .addComponent(jlblCreditos))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jspInfoCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jspInfoCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 2, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jspInfoCursos, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jspInfoCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         /*jspInfoCursos.setBounds(10, 35, 250, 525);
@@ -158,7 +219,7 @@ public class PanelCursos extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jspPuestosAula, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)))
+                        .addComponent(jspPuestosAula)))
                 .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
@@ -187,11 +248,16 @@ public class PanelCursos extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel jlblCreditos;
+    private javax.swing.JLabel jlblPonderadoAcumulado;
     private javax.swing.JPanel jpaneCheckBox;
     private javax.swing.JPanel jpaneInfoCursos;
     private javax.swing.JPanel jpanePruebas;
@@ -202,9 +268,6 @@ public class PanelCursos extends javax.swing.JPanel {
     private void generarGraficos() {
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
 
-        renderer.setSeriesStroke(0, new BasicStroke(4.0f));
-        renderer.setSeriesStroke(1, new BasicStroke(3.0f));
-        renderer.setSeriesStroke(2, new BasicStroke(2.0f));
         XYSeriesCollection dataset = new XYSeriesCollection();
         Iterator<CheckBoxCurso> iterador = cursos.iterator();
 
@@ -231,6 +294,7 @@ public class PanelCursos extends javax.swing.JPanel {
                 }
                 dataset.addSeries(curso_line);
                 renderer.setSeriesPaint(it, cbc.color_curso);
+                renderer.setSeriesStroke(it, new BasicStroke(4.0f));
                 it++;
             }
         }
@@ -258,7 +322,7 @@ public class PanelCursos extends javax.swing.JPanel {
 
     private void cargarCursos() {
         addCurso(
-                "Taller de Desarrollo de Software I", "FARRO PACÍFICO Edwin Iván", Colores.getColorAt(0), 
+                "Taller de Desarrollo de Software I", "FARRO PACÍFICO Edwin Iván",4d, Colores.getColorAt(0), 
                 19.4, 19.2, 19.0, 
                 18.4, 18.2, 20.0,
                 19.4, 19.2, 19.4,
@@ -266,7 +330,7 @@ public class PanelCursos extends javax.swing.JPanel {
                 0
                 );
         addCurso(
-                "Taller de Procesamiento Distribuido", "GALLARDO ANDRÉS Jhonar Ángel", Colores.getColorAt(1), 
+                "Taller de Procesamiento Distribuido", "GALLARDO ANDRÉS Jhonar Ángel",4d, Colores.getColorAt(1), 
                 15.4, 18.2, 15.4, 
                 15.4, 18.2, 15.4,
                 15.4, 18.2, 15.4,
@@ -274,7 +338,7 @@ public class PanelCursos extends javax.swing.JPanel {
                 0
                 );
         addCurso(
-                "Taller de Innovación Tecnológica", "LEÓN JULCA Manuel Antonio", Colores.getColorAt(2), 
+                "Taller de Innovación Tecnológica", "LEÓN JULCA Manuel Antonio",3d, Colores.getColorAt(2), 
                 15.4, 18.2, 15.4, 
                 11.4, 18.2, 11.4,
                 15.4, 12.2, 15.4,
@@ -282,7 +346,7 @@ public class PanelCursos extends javax.swing.JPanel {
                 0
                 );
         addCurso(
-                "Ética, Responsabilidad Social y Ambiental", "CRUZ CASTAÑEDA Carlos Manuel", Colores.getColorAt(3), 
+                "Ética, Responsabilidad Social y Ambiental", "CRUZ CASTAÑEDA Carlos Manuel",2d, Colores.getColorAt(3), 
                 15.4, 18.2, 18.4, 
                 15.4, 12.2, 15.4,
                 10.4, 18.2, 15.4,
@@ -290,7 +354,7 @@ public class PanelCursos extends javax.swing.JPanel {
                 0
                 );
         addCurso(
-                "Fundamentos de Sistemas de Información", "MEYHUAY FIDEL Juan Carlos", Colores.getColorAt(7), 
+                "Fundamentos de Sistemas de Información", "MEYHUAY FIDEL Juan Carlos",3d, Colores.getColorAt(7), 
                 15.4, 10.2, 10.4, 
                 12.4, 12.2, 15.4,
                 10.4, 14.2, 10.4,
@@ -301,8 +365,8 @@ public class PanelCursos extends javax.swing.JPanel {
         System.out.println("cursos cargados");
     }
 
-    private void addCurso(String nombre, String docente, Color color_curso, Double ec1, Double ep1, Double ed1, Double ec2, Double ep2, Double ed2, Double ec3, Double ep3, Double ed3, Double ec4, Double ep4, Double ed4, int inasistencias) {
-        NotasCurso curso = new NotasCurso(nombre, docente);
+    private void addCurso(String nombre, String docente,Double creditos, Color color_curso, Double ec1, Double ep1, Double ed1, Double ec2, Double ep2, Double ed2, Double ec3, Double ep3, Double ed3, Double ec4, Double ep4, Double ed4, int inasistencias) {
+        NotasCurso curso = new NotasCurso(nombre, docente, creditos);
         JCheckBox checkbox = new JCheckBox();
         checkbox.setBackground(new java.awt.Color(255, 255, 255));
         checkbox.setText(curso.getNombre());
@@ -382,12 +446,28 @@ public class PanelCursos extends javax.swing.JPanel {
     private void agregarInfoCursos() {
         for (int i = 0; i < cursos.size(); i++) {
             agregarCurso(cursos.get(i).curso, cursos.get(i).color_curso);
-            try {
-                Thread.sleep(1200);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(PanelCursos.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
     }
 
+    private Double calcularPonderado(){
+        Double acumulado = 0.0;
+        Double creditos = totalCreditos();
+        NotasCurso curso;
+        for (int i = 0; i < cursos.size(); i++) {
+            curso = cursos.get(i).curso;
+            acumulado += curso.getPAcumulado()*(curso.getCreditos()/creditos);
+            System.out.println(curso.getNombre() + " : " + curso.getPAcumulado());
+        }
+        System.out.println("acmulado: "+acumulado);
+        return NotasCurso.format(NotasCurso.validarNota(acumulado ));
+    }
+    
+    private Double totalCreditos(){
+        Double creditos = 0.0;
+        for (int i = 0; i < cursos.size(); i++) {
+            creditos += cursos.get(i).curso.getCreditos();
+        }
+        jlblCreditos.setText("" + creditos);
+        return creditos;
+    }
 }
