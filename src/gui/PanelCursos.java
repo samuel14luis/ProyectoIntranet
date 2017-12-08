@@ -7,6 +7,7 @@ package gui;
 
 import complementos.CheckBoxCurso;
 import complementos.NotasCurso;
+import complementos.jpaneInfoCurso;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -45,7 +46,12 @@ public class PanelCursos extends javax.swing.JPanel {
         this.active = active;
         this.principal = principal;
         cursos = new ArrayList<>();
-        cargarCursos();
+        cargarCursos();        
+        Thread hilo = new Thread(() -> {
+            generarGraficos();    
+            agregarInfoCursos();
+        });
+        hilo.start();
     }
 
     /**
@@ -62,6 +68,10 @@ public class PanelCursos extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         jpaneCheckBox = new javax.swing.JPanel();
+        jspInfoCursos = new javax.swing.JScrollPane();
+        jpaneInfoCursos = new javax.swing.JPanel();
+        jspPuestosAula = new javax.swing.JScrollPane();
+        jpanePruebas = new javax.swing.JPanel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -80,7 +90,7 @@ public class PanelCursos extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -95,13 +105,32 @@ public class PanelCursos extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        jspInfoCursos.setBackground(new java.awt.Color(255, 255, 255));
+        jspInfoCursos.setBorder(null);
+        jspInfoCursos.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jspInfoCursos.setMaximumSize(new java.awt.Dimension(228, 269));
+        jspInfoCursos.setPreferredSize(new java.awt.Dimension(228, 269));
+
+        jpaneInfoCursos.setBackground(new java.awt.Color(255, 255, 255));
+        jpaneInfoCursos.setMaximumSize(new java.awt.Dimension(228, 269));
+        jpaneInfoCursos.setLayout(new javax.swing.BoxLayout(jpaneInfoCursos, javax.swing.BoxLayout.PAGE_AXIS));
+        jspInfoCursos.setViewportView(jpaneInfoCursos);
+
+        jpanePruebas.setLayout(new javax.swing.BoxLayout(jpanePruebas, javax.swing.BoxLayout.PAGE_AXIS));
+        jspPuestosAula.setViewportView(jpanePruebas);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jspInfoCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jspPuestosAula, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -109,8 +138,19 @@ public class PanelCursos extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jspPuestosAula, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addComponent(jspInfoCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        /*jspInfoCursos.setBounds(10, 35, 250, 525);
+        jspInfoCursos.setBackground(new Color(1, 0, 0, 0));
+        jspInfoCursos.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
+        jspInfoCursos.getViewport().setBorder(null);
+        jspInfoCursos.setViewportBorder(null);
+        jspInfoCursos.setBorder(null);*/
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -131,6 +171,10 @@ public class PanelCursos extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel jpaneCheckBox;
+    private javax.swing.JPanel jpaneInfoCursos;
+    private javax.swing.JPanel jpanePruebas;
+    private javax.swing.JScrollPane jspInfoCursos;
+    private javax.swing.JScrollPane jspPuestosAula;
     // End of variables declaration//GEN-END:variables
 
     private void generarGraficos() {
@@ -147,8 +191,8 @@ public class PanelCursos extends javax.swing.JPanel {
 
         while (iterador.hasNext()) {
             CheckBoxCurso cbc = iterador.next();
+            NotasCurso curso = cbc.curso;
             if (cbc.checkbox.isSelected()) {
-                NotasCurso curso = cbc.curso;
                 curso_line = new XYSeries(curso.getNombre());
                 if (curso.getNota1() != null) {
                     curso_line.add(1, curso.getNota1());
@@ -165,7 +209,7 @@ public class PanelCursos extends javax.swing.JPanel {
                 dataset.addSeries(curso_line);
                 renderer.setSeriesPaint(it, cbc.color_curso);
                 it++;
-            }
+            }            
         }
         //agregamos gráfica de nota máxima y mínima y módulo de 1 a 4
         curso_line = new XYSeries("-");
@@ -174,27 +218,6 @@ public class PanelCursos extends javax.swing.JPanel {
         dataset.addSeries(curso_line);
         renderer.setSeriesPaint(it, new Color(255, 200, 0, 0));
 
-        /*
-        XYSeries carro = new XYSeries("Automóvil");
-        carro.add(1, 1);
-        carro.add(2, 4);
-        carro.add(3, 3);
-
-        XYSeries bici = new XYSeries("Bicicleta");
-        bici.add(1, 4);
-        bici.add(2, 5);
-        bici.add(3, 6);
-
-        XYSeries moto = new XYSeries("Motocicleta");
-        moto.add(3, 4);
-        moto.add(4, 5);
-        moto.add(5, 4);
-
-        XYSeriesCollection dataset = new XYSeriesCollection();
-        dataset.addSeries(carro);
-        dataset.addSeries(bici);
-        dataset.addSeries(moto);
-         */
         JFreeChart xylineChart = ChartFactory.createXYLineChart(
                 "Evolución de tus notas",
                 "Módulo",
@@ -211,20 +234,21 @@ public class PanelCursos extends javax.swing.JPanel {
     }
 
     private void cargarCursos() {
-        addCurso("Taller de Desarrollo de Software I", 15.4, 18.2, null, null, Color.GREEN);
-        addCurso("Taller de Procesamiento Distribuido", 14.2, 16.3, null, null, Color.RED);
-        addCurso("Taller de Innovación Tecnológica", 14.2, 14.2, null, null, Color.BLUE);
-        addCurso("Ética, Responsabilidad Social y Ambiental", 15.0, 14.3, null, null, Color.YELLOW);
-        addCurso("Fundamentos de Sistemas de Información", 14.1, 14.1, null, null, Color.MAGENTA);
+        addCurso("Taller de Desarrollo de Software I", "FARRO PACÍFICO Edwin Iván", 15.4, 18.2, null, null, Color.GREEN);
+        addCurso("Taller de Procesamiento Distribuido", "GALLARDO ANDRÉS Jhonar Ángel", 14.2, 16.3, null, null, Color.RED);
+        addCurso("Taller de Innovación Tecnológica", "LEÓN JULCA Manuel Antonio", 14.2, 14.2, null, null, Color.BLUE);
+        addCurso("Ética, Responsabilidad Social y Ambiental", "CRUZ CASTAÑEDA Carlos Manuel", 15.0, 14.3, null, null, Color.YELLOW);
+        addCurso("Fundamentos de Sistemas de Información", "MEYHUAY FIDEL Juan Carlos", 14.1, 14.1, null, null, Color.MAGENTA);
 
         System.out.println("cursos cargados");
     }
 
-    private void addCurso(String nombre, Double n1, Double n2, Double n3, Double n4, Color color_curso) {
-        NotasCurso curso = new NotasCurso(nombre);
+    private void addCurso(String nombre, String docente, Double n1, Double n2, Double n3, Double n4, Color color_curso) {
+        NotasCurso curso = new NotasCurso(nombre, docente);
         JCheckBox checkbox = new JCheckBox();
         checkbox.setBackground(new java.awt.Color(255, 255, 255));
         checkbox.setText(curso.getNombre());
+        checkbox.setSelected(true);
         checkbox.addActionListener((java.awt.event.ActionEvent evt) -> {
             generarGraficos();
         });
@@ -243,6 +267,27 @@ public class PanelCursos extends javax.swing.JPanel {
         cursos.add(new CheckBoxCurso(checkbox, curso, color_curso));
         jpaneCheckBox.add(checkbox);
         //jpaneCheckBox.updateUI();
+    }
+
+    private void agregarCurso(NotasCurso curso, Color color_curso) {
+        jpaneInfoCurso info_curso = new jpaneInfoCurso(curso,color_curso);
+        Dimension d = new Dimension(479-15, 267);
+        //Dimension d = new Dimension(jpaneInfoCursos.getWidth()-15, 269);
+        info_curso.setMinimumSize(d);
+        info_curso.setMaximumSize(d);
+        info_curso.setPreferredSize(d);
+        info_curso.setVisible(true);
+        
+        jpaneInfoCursos.add(info_curso);
+        jpaneInfoCursos.updateUI();
+        
+        System.out.println("added: "+curso.getNombre());
+    }
+
+    private void agregarInfoCursos() {
+        for (int i = 0; i < cursos.size(); i++) {
+            agregarCurso(cursos.get(i).curso,cursos.get(i).color_curso);
+        }
     }
 
 }

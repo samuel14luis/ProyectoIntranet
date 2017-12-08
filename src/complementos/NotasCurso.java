@@ -10,11 +10,13 @@ package complementos;
  * @author Alisoft
  */
 public class NotasCurso {
-    String nombre;
+
+    String nombre, docente;
     Double nota1, nota2, nota3, nota4;
 
-    public NotasCurso(String nombre) {
+    public NotasCurso(String nombre, String docente) {
         this.nombre = nombre;
+        this.docente = docente;
     }
 
     public String getNombre() {
@@ -56,6 +58,13 @@ public class NotasCurso {
     public void setNota4(Double nota4) {
         this.nota4 = nota4;
     }
-    
-    
+
+    public String getDocente() {
+        return docente;
+    }
+
+    public void setDocente(String docente) {
+        this.docente = docente;
+    }
+
 }
