@@ -14,6 +14,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
@@ -51,7 +53,7 @@ public class PanelCursos extends javax.swing.JPanel {
         Thread hilo = new Thread(() -> {
             generarGraficos();
             agregarInfoCursos();
-            jlblPonderadoAcumulado.setText(""+calcularPonderado());
+            jlblPonderadoAcumulado.setText("" + calcularPonderado());
         });
         hilo.start();
     }
@@ -280,7 +282,7 @@ public class PanelCursos extends javax.swing.JPanel {
             NotasCurso curso = cbc.curso;
             if (cbc.checkbox.isSelected()) {
                 curso_line = new XYSeries(curso.getNombre());
-                
+
                 if (curso.getPromedioDeModulo1() != null) {
                     curso_line.add(1, curso.getPromedioDeModulo1());
                 }
@@ -322,49 +324,49 @@ public class PanelCursos extends javax.swing.JPanel {
     }
 
     private void cargarCursos() {
-        /*
+
         addCurso(
-                "Taller de Desarrollo de Software I", "FARRO PACÍFICO Edwin Iván",4d, Colores.getColorAt(0), 
-                19.4, 19.2, 19.0, 
+                "Taller de Desarrollo de Software I", "FARRO PACÍFICO Edwin Iván", 4d, Colores.getColorAt(0),
+                19.4, 19.2, 19.0,
                 18.4, 18.2, 20.0,
                 19.4, 19.2, 19.4,
                 19.4, 18.2, 18.4,
                 0
-                );
+        );
         addCurso(
-                "Taller de Procesamiento Distribuido", "GALLARDO ANDRÉS Jhonar Ángel",4d, Colores.getColorAt(1), 
-                15.4, 18.2, 15.4, 
+                "Taller de Procesamiento Distribuido", "GALLARDO ANDRÉS Jhonar Ángel", 4d, Colores.getColorAt(1),
+                15.4, 18.2, 15.4,
                 15.4, 18.2, 15.4,
                 15.4, 18.2, 15.4,
                 15.4, 18.2, 15.4,
                 0
-                );
+        );
         addCurso(
-                "Taller de Innovación Tecnológica", "LEÓN JULCA Manuel Antonio",3d, Colores.getColorAt(2), 
-                15.4, 18.2, 15.4, 
+                "Taller de Innovación Tecnológica", "LEÓN JULCA Manuel Antonio", 3d, Colores.getColorAt(2),
+                15.4, 18.2, 15.4,
                 11.4, 18.2, 11.4,
                 15.4, 12.2, 15.4,
                 15.4, 18.2, 15.4,
                 0
-                );
+        );
         addCurso(
-                "Ética, Responsabilidad Social y Ambiental", "CRUZ CASTAÑEDA Carlos Manuel",2d, Colores.getColorAt(3), 
-                15.4, 18.2, 18.4, 
+                "Ética, Responsabilidad Social y Ambiental", "CRUZ CASTAÑEDA Carlos Manuel", 2d, Colores.getColorAt(3),
+                15.4, 18.2, 18.4,
                 15.4, 12.2, 15.4,
                 10.4, 18.2, 15.4,
                 15.4, 10.2, 17.4,
                 0
-                );
+        );
         addCurso(
-                "Fundamentos de Sistemas de Información", "MEYHUAY FIDEL Juan Carlos",3d, Colores.getColorAt(7), 
-                15.4, 10.2, 10.4, 
+                "Fundamentos de Sistemas de Información", "MEYHUAY FIDEL Juan Carlos", 3d, Colores.getColorAt(7),
+                15.4, 10.2, 10.4,
                 12.4, 12.2, 15.4,
                 10.4, 14.2, 10.4,
                 10.4, 18.2, 15.4,
                 0
-                );
-        */
-        
+        );
+
+        /*
         addCurso(
                 "Curso 1", "sin nombre",3d, Colores.getColorAt(2), 
                 10.0,10.0,12.0,
@@ -389,11 +391,11 @@ public class PanelCursos extends javax.swing.JPanel {
                 null,null,null,
                 0
                 );
-        
+         */
         System.out.println("cursos cargados");
     }
 
-    private void addCurso(String nombre, String docente,Double creditos, Color color_curso, Double ec1, Double ep1, Double ed1, Double ec2, Double ep2, Double ed2, Double ec3, Double ep3, Double ed3, Double ec4, Double ep4, Double ed4, int inasistencias) {
+    private void addCurso(String nombre, String docente, Double creditos, Color color_curso, Double ec1, Double ep1, Double ed1, Double ec2, Double ep2, Double ed2, Double ec3, Double ep3, Double ed3, Double ec4, Double ep4, Double ed4, int inasistencias) {
         NotasCurso curso = new NotasCurso(nombre, docente, creditos);
         JCheckBox checkbox = new JCheckBox();
         checkbox.setBackground(new java.awt.Color(255, 255, 255));
@@ -402,14 +404,14 @@ public class PanelCursos extends javax.swing.JPanel {
         checkbox.addActionListener((java.awt.event.ActionEvent evt) -> {
             generarGraficos();
         });
-        
+
         //<editor-fold defaultstate="collapsed" desc="Condicionales">
-        if (inasistencias<=0) {
+        if (inasistencias <= 0) {
             curso.setInasistencias(0);
-        }else{
+        } else {
             curso.setInasistencias(inasistencias);
         }
-        
+
         if (ec1 != null) {
             curso.setEc1(ec1);
         }
@@ -419,7 +421,7 @@ public class PanelCursos extends javax.swing.JPanel {
         if (ed1 != null) {
             curso.setEd1(ed1);
         }
-        
+
         if (ec2 != null) {
             curso.setEc2(ec2);
         }
@@ -429,7 +431,7 @@ public class PanelCursos extends javax.swing.JPanel {
         if (ed2 != null) {
             curso.setEd2(ed2);
         }
-        
+
         if (ec3 != null) {
             curso.setEc3(ec3);
         }
@@ -439,7 +441,7 @@ public class PanelCursos extends javax.swing.JPanel {
         if (ed3 != null) {
             curso.setEd3(ed3);
         }
-        
+
         if (ec4 != null) {
             curso.setEc4(ec4);
         }
@@ -453,7 +455,6 @@ public class PanelCursos extends javax.swing.JPanel {
 
         cursos.add(new CheckBoxCurso(checkbox, curso, color_curso));
         jpaneCheckBox.add(checkbox);
-        //jpaneCheckBox.updateUI();
     }
 
     private void agregarCurso(NotasCurso curso, Color color_curso) {
@@ -477,20 +478,20 @@ public class PanelCursos extends javax.swing.JPanel {
         }
     }
 
-    private Double calcularPonderado(){
+    private Double calcularPonderado() {
         Double acumulado = 0.0;
         Double creditos = totalCreditos();
         NotasCurso curso;
         for (int i = 0; i < cursos.size(); i++) {
             curso = cursos.get(i).curso;
-            acumulado += curso.getPAcumulado()*(curso.getCreditos()/creditos);
+            acumulado += curso.getPAcumulado() * (curso.getCreditos() / creditos);
             System.out.println(curso.getNombre() + " : " + curso.getPAcumulado());
         }
-        System.out.println("acmulado: "+acumulado);
-        return NotasCurso.format(NotasCurso.validarNota(acumulado ));
+        System.out.println("acmulado: " + acumulado);
+        return NotasCurso.format(NotasCurso.validarNota(acumulado));
     }
-    
-    private Double totalCreditos(){
+
+    private Double totalCreditos() {
         Double creditos = 0.0;
         for (int i = 0; i < cursos.size(); i++) {
             creditos += cursos.get(i).curso.getCreditos();
