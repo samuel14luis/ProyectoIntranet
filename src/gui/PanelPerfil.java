@@ -56,8 +56,10 @@ public class PanelPerfil extends javax.swing.JPanel {
         jTextField6 = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jTextField14 = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
+        jTextField16 = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -101,71 +103,77 @@ public class PanelPerfil extends javax.swing.JPanel {
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 11, -1, -1));
 
         jLabel6.setForeground(new java.awt.Color(0, 0, 255));
-        jLabel6.setText("Nombre:");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
+        jLabel6.setText("Codigo universitario");
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 255));
         jLabel7.setText("Departamento:");
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, 30));
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 30));
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 255));
         jLabel9.setText("Apellidos:");
-        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 255));
         jLabel8.setText("Distrito:   ");
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, 20));
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, 20));
 
         jLabel10.setForeground(new java.awt.Color(0, 0, 255));
         jLabel10.setText("Provincia:");
-        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, 30));
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 30));
 
-        jTextField2.setText("Angello Jones");
-        jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 200, -1));
+        jTextField2.setText("0333152013");
+        jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 200, -1));
 
         jTextField3.setText("Lopez Castro");
-        jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 200, -1));
+        jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 200, -1));
 
         jTextField4.setText("Lima");
-        jPanel3.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 200, -1));
+        jPanel3.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 200, -1));
 
         jTextField5.setText("Huaura");
-        jPanel3.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 200, -1));
+        jPanel3.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 200, -1));
 
         jTextField6.setText("Hualmay");
-        jPanel3.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 200, -1));
+        jPanel3.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 200, -1));
 
         jLabel19.setForeground(new java.awt.Color(0, 0, 255));
         jLabel19.setText("Direccion:");
-        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
 
         jTextField14.setText("Prolongacion.Las flores 443");
-        jPanel3.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 200, -1));
+        jPanel3.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 200, -1));
 
-        jLabel20.setForeground(new java.awt.Color(0, 0, 255));
-        jLabel20.setText("Direccion:");
-        jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
+        jLabel11.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel11.setText("Nombre:");
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
-        jTextField15.setText("Prolongacion.Las flores 443");
-        jPanel3.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 200, -1));
+        jTextField7.setText("Angello Jones");
+        jPanel3.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 200, -1));
+
+        jTextField16.setText("Masculino");
+        jPanel3.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 200, -1));
+
+        jLabel21.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel21.setText("Sexo:");
+        jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(126, 126, 126))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 198, Short.MAX_VALUE))
+                .addGap(0, 210, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -173,9 +181,10 @@ public class PanelPerfil extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
@@ -186,11 +195,12 @@ public class PanelPerfil extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
+    private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }
