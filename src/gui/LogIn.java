@@ -7,6 +7,7 @@ package gui;
 
 import complementos.AtributosGUI;
 import dao.UsuarioDAO;
+import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -391,7 +392,6 @@ public class LogIn extends javax.swing.JFrame {
     private void mostrarError(String mensaje) {
         jlblError.setText(mensaje);
         jlblError.setForeground(AtributosGUI.color_error);
-        jlblError.setVisible(true);
     }
 
     private void abrirPrincipalGUI() {
@@ -408,11 +408,15 @@ public class LogIn extends javax.swing.JFrame {
         AtributosGUI.setColoresEstandar();
         jlblCodigo.setVisible(false);
         jlblContrasenia.setVisible(false);
-        jlblError.setVisible(false);
+        limpiarError();
         jtxtContrasenia.setText("Contraseña:");
         jtxtContrasenia.setFont(new java.awt.Font("Roboto Lt", 0, 11));
         jtxtContrasenia.setEchoChar((char) 0);
         jpaneHeader.setBackground(AtributosGUI.color_principal);
         jpaneSinConexion.setVisible(false);
+    }
+
+    private void limpiarError() {
+        jlblError.setForeground(new Color(0, 0, 0, 0));
     }
 }
